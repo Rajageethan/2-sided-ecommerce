@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Home Grown Heaven Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('../static/background.jpg'); 
+      background-size: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    .container {
+      width: 300px;
+      margin: 100px auto;
+      background-color: rgba(0, 0, 0, 0.163);
+      backdrop-filter: blur(20px);
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2{
+      color: white;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    input[type="submit"] {
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    .p1{
+      color: white;
+    }
+
+    .p2{
+      color: white;
+    }
+
+    label{
+      color: white;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Login</h2>
+    <form  method="POST">
+      <input type="text" placeholder="Username" name="username" required>
+      <input type="password" placeholder="Password" name="password" required>
+      <input type="submit" value="Login">
+    </form>
+    <input type="checkbox" id="shareLocationCheckbox">
+    <label for="shareLocationCheckbox">Share My Location</label>
+    <p class="p1">Don't have an account? <a href="{{ url_for('buyer_signup') }}">Sign Up</a></p>
+    <p class="p2" id="locationSafety">Sharing your location is safe and secure. It's only used to enhance your experience.</p>
+  </div>
+
+  <script>
+    function shareLocation() {
+      var checkbox = document.getElementById("shareLocationCheckbox");
+      if (checkbox.checked) {
+        getLocation();
+      }
+    }
+
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+      } else {
+        alert("Geolocation is not supported by this browser.");
+      }
+    }
+
+    function showPosition(position) {
+      var latitude = position.coords.latitude;
+      var longitude = position.coords.longitude;
+      
+      // Add hidden fields to the form to send the location data with the login request
+      var form = document.getElementById("loginForm");
+      var latField = document.createElement("input");
+      latField.setAttribute("type", "hidden");
+      latField.setAttribute("name", "latitude");
+      latField.setAttribute("value", latitude);
+      form.appendChild(latField);
+
+      var lonField = document.createElement("input");
+      lonField.setAttribute("type", "hidden");
+      lonField.setAttribute("name", "longitude");
+      lonField.setAttribute("value", longitude);
+      form.appendChild(lonField);
+
+      // Submit the form
+      form.submit();
+    }
+  </script>
+
+
+</body>
+</html>
+   

@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOME GROWN HEAVEN</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Remove scroll bar */
+            height: 100vh;
+            overflow-y: visible;
+        }
+
+        ::-webkit-scrollbar{
+            display: none;
+        }
+
+        header {
+            background: linear-gradient(to right, #8bc34a, #cddc39);
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        header p {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        nav {
+            background: #8bc34a;
+            padding: 20px 0;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        nav h1{
+            margin-right: 400px; /* Adjust as needed */
+            font-style: italic;
+            color: #fff;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        nav ul li {
+            margin-right: 20px;
+        }
+
+        nav ul li:last-child {
+            margin-right: 0;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            padding: 20px 20px;
+            border-radius: 5px;
+            transition: background 0.3s;
+            font-size: 16px;
+
+        }
+
+        nav ul li a:hover {
+            background: #cddc39;
+        }
+
+        .search-bar {
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-left: 10px;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-bar input[type="text"] {
+            border: none;
+            outline: none;
+            padding: 5px;
+            margin-right: 5px;
+        }
+
+        .search-bar button {
+            background-color: #cddc39;
+            color: #fff;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .search-bar button:hover {
+            background-color: #8bc34a;
+        }
+
+        .logout{
+            width: 100px;
+            height: 35px;
+            background-color: #8bc34a;;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 16px;
+            
+        }
+
+        .logout:hover{
+            background: #cddc39;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .product {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            flex: 0 0 calc(25% - 20px);
+            transition: transform 0.3s;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        /* .product:hover {
+            transform: translateY(-5px);
+        } */
+
+        /* .product::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        } */
+
+        /* .product:hover::before {
+            opacity: 1;
+        } */
+
+        .product img {
+            max-width: 100%;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .product:hover img {
+            transform: scale(1.05);
+        }
+
+        .product h2 {
+            margin-top: 10px;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+            transition: transform 0.3s;
+        }
+
+        .product:hover h2 {
+            transform: translateY(-5px);
+        }
+
+        .product p {
+            margin: 10px 0;
+            font-size: 16px;
+            color: #555;
+            transition: transform 0.3s;
+        }
+
+        .product:hover p {
+            transform: translateY(-5px);
+        }
+
+        .product .price {
+            color: #8bc34a;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: block;
+            transition: transform 0.3s;
+        }
+
+        .product:hover .price {
+            transform: translateY(-5px);
+        }
+
+        .product button {
+            background: #8bc34a;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+            display: block;
+            width: 100%;
+            font-size: 18px;
+            text-align: center;
+            outline: none;
+            transform: translateY(0);
+        }
+
+        .product button:hover {
+            background: #cddc39;
+            /* transform: translateY(-5px); */
+        }
+
+        
+
+        footer {
+            background: linear-gradient(to right, #8bc34a, #cddc39);
+            color: #fff;
+            text-align: center;
+            padding: 50px 0;
+            clear: both;
+            position: sticky;
+            bottom: 0;
+            right: 0;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s;
+            font-size: 18px;
+        }
+
+        footer a:hover {
+            color: #8bc34a;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-bottom: 20px solid #fff;
+        }
+
+        .category-filter::before {
+            display: none; /* Hide the triangle */
+        }
+
+        .right-section {
+            display: flex;
+            align-items: center;
+        }
+
+        .right-section a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .right-section a:hover {
+            color: #cddc39;
+        }
+
+        .profile-icon {
+            font-size: 24px;
+            color: #fff; /* Set icon color */
+            margin-left: 20px; /* Add some space between icons */
+            cursor: pointer; /* Change cursor to pointer on hover */
+        }
+
+
+        .profile-options {
+            display: none;
+            position: absolute;
+            top: calc(100% + 5px); /* Position options below the profile icon */
+            right: 0;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            z-index: 1;
+            width: 120px; /* Adjust width as needed */
+            text-align: left; /* Align options to the left */
+        }   
+        
+        /* Show profile options on hover */
+        .profile-icon:hover + .profile-options,
+        .profile-options:hover {
+            display: block;
+        }
+
+        /* Style the profile options */
+        .profile-options a {
+            display: block;
+            color: #333;
+            text-decoration: none;
+            padding: 5px 10px;
+        }
+
+        .profile-options a:hover {
+            background-color: #f0f0f0;
+        }
+
+        /* Popup Container */
+        .popup-container {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            z-index: 999;
+            padding: 20px;
+            max-width: 400px; /* Adjust the width as needed */
+            text-align: center;
+        }
+
+        /* Popup Content */
+        .popup-content {
+            position: relative;
+        }
+
+        /* Close Button */
+        .close-popup {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .quantityInput1 {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 5px;
+            width: 150px; /* Adjust width as needed */
+            margin-bottom: 5px;
+            margin-top: 10px;
+        }
+
+        
+
+
+       
+
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>HOME GROWN HEAVEN</h1>
+    <p>Connecting Farmers to Your Table</p>
+</header>
+
+<nav>
+    <h1>Welcome, {{ current_user.username }}!</h1>
+    <ul>
+        <li><a href="#" class="category-filter" data-category="all">All</a></li>
+        <li><a href="#" class="category-filter" data-category="fruits">Fruits</a></li>
+        <li><a href="#" class="category-filter" data-category="vegetables">Vegetables</a></li>
+        <li><a href="#" class="category-filter" data-category="grains">Grains</a></li>
+        <li>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search...">
+                <button id="searchButton"><i class="fas fa-search"></i></button>
+            </div>
+        </li>
+        <li><form action="{{ url_for('logout') }}"><button  class="logout">Logout</button></form></li>
+        
+    </ul>
+    
+    
+</nav>
+
+<div class="container">
+
+    {% for product in products %}
+    <div class="product" data-category="{{ product[4] }}">
+        <img src="data:image/jpg;base64,{{ product[6] }}" alt="{{ product[2] }}">
+        <h2>{{ product[2] }}</h2>  
+        <p>{{ product[3] }}</p>
+        <span class="price">Rs. {{ product[5] }}/Kg</span>
+        <form action="/place_order/{{ product[0] }}" method="post">
+            <input type="text" name="quantity" placeholder="Quantity" min="1" >
+            <input type="hidden" name="product_id" value="{{ product[0] }}">
+            <button type="submit" class="buy-now">Buy Now</button>
+        </form>
+    </div>
+    {% endfor %}
+
+
+</div>
+
+
+<footer>
+    <p>&copy; 2024 Home Grown Heaven    . All Rights Reserved.</p>
+    <p>
+        <a href="#">Terms and Conditions</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Refund Policy</a>
+    </p>
+</footer>
+
+<script>
+    // JavaScript for filtering products based on categories
+    const categoryLinks = document.querySelectorAll('.category-filter');
+    const products = document.querySelectorAll('.product');
+
+    categoryLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            const category = link.getAttribute('data-category');
+
+            products.forEach(product => {
+                const productCategory = product.getAttribute('data-category');
+
+                if (category === 'all' || productCategory === category) {
+                    product.style.display = 'block';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        });
+    });
+
+    // JavaScript for search functionality
+    const searchInput = document.getElementById('searchInput');
+    const searchButton = document.getElementById('searchButton');
+
+    searchButton.addEventListener('click', () => {
+        const searchText = searchInput.value.toLowerCase();
+
+        products.forEach(product => {
+            const productName = product.querySelector('h2').textContent.toLowerCase();
+            const productCategory = product.getAttribute('data-category').toLowerCase();
+
+            if (productName.includes(searchText) || productCategory.includes(searchText)) {
+                product.style.display = 'block';
+            } else {
+                product.style.display = 'none';
+            }
+        });
+    });
+</script>
+
+<!-- <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const buyNowButtons = document.querySelectorAll('.buy-now');
+        const popupContainer = document.getElementById('popupContainer');
+        const closePopupButton = document.querySelector('.close-popup');
+        const confirmPurchaseButton = document.getElementById('confirmPurchase');
+
+        buyNowButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                popupContainer.style.display = 'block';
+            });
+        });
+
+        closePopupButton.addEventListener('click', () => {
+            popupContainer.style.display = 'none';
+        });
+
+        confirmPurchaseButton.addEventListener('click', () => {
+            // Your logic for confirming the purchase
+            // Hide the popup after confirmation
+            popupContainer.style.display = 'none';
+        });
+    });
+</script> -->
+
+</body>
+</html>
